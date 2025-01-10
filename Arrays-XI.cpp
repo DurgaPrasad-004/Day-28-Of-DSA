@@ -220,6 +220,61 @@ vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m){
     }
 }
 
+// Rotate matrix by 90* angle
+// Brute force
+vector< vector < int >> rotate(vector < vector < int >> & matrix){
+    int n = matrix.size();
+    vector < vector < int >> rotated(n, vector < int >> & matrix){
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                rotated[j][n - i - 1] = matrix[i][j];
+            }
+        }
+    }
+    return rotated;
+}
+
+int main(){
+    vector < vector < int >> arr;
+    arr =  {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}; 
+    vector < vector < int >> rotated = rotate(arr);
+    cout << "rotated" endl;
+    for(int i = 0; i < rotated.size(); i++){
+        for(int j = 0; j < rotated.size(); j++){
+            cout << rotated[i][j] << " ";
+        }
+    }
+}
+//Time Complexity: O(N*N);
+
+// Optimal approach
+void rotate(vector < vector < int >> & matrix){
+    int n = matrix.size();
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < i; j++){
+            swap([i][j], matrix[j][i]);
+        }
+    }
+    // reversing the each row of matrix
+    for(int i =0; i< n; i++){
+        reverse(matrix[i].begin(), matrix[i].end());
+    }
+}
+
+int main(){
+    vector < vector < int >> arr;
+    arr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    rotate(arr); 
+    cout << "rotated" << endl;
+    for(int i =0; i  < arr.size(); i++){
+        for(int j =0; j < arr[0].size(); j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Time complexity : O(N*N) + O(N*N).One O(N*N)
 
 
 
