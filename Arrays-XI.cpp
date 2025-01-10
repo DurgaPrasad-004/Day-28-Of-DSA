@@ -66,7 +66,35 @@ int longestSuccessiveElements(vector<int>&nums){
 //Time Complexity: O(NlogN) + O(N)
 
 
+// Optimal Approach
+// We'll use data structure
+int longestSuccessiveelements(vector<int>&a){
+    int n = a.size();
+    if(n == 0) return 0;
+    int longestt = 0;
+    unordered_set<int> set;
+    //put all the array elements into the set:
+    for(int i =0; i<n; i++){
+        set.insert(a[i]);
+    }
+    // find the longest sequence
+    for(auto it : set){
+        // if 'it' is a starting number:
+        if(set.find(it -1) == set.end()){
+            // find the consecutive number:
+            int count = 1;
+            int x = it;
+            while(set.find(x+1) != set.end()){
+                x = x +1;
+                count = count + 1;
+            }
+            longestt = max(longestt, count);
+        }
+    }
+    return longestt;
+}
 
+//Time Complexity: O(N) + O(2*N) ~ O(3*N);
 
 
 
