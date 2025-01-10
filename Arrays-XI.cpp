@@ -97,7 +97,62 @@ int longestSuccessiveelements(vector<int>&a){
 //Time Complexity: O(N) + O(2*N) ~ O(3*N);
 
 
+// Set matrix zone
+void markRow(vector<vector<int>> &martrix, int n, int m){
+    // set all the non zero elements as -1 the row i
+    for(int j =0; j<m;j++){
+        if(martrix[i][j] != 0){
+            martrix[i][j] = -1;
+        }
+    }
+}
 
+void markCol(vector<vector<int>> &martrix, int n, int m){
+    // set all the non zero elements as -1 the column j
+    for(int i =0; i<n; i++){
+        if(martrix[i][j]!= 0){
+            martrix[i][j] = -1;
+        }
+    }
+}
+
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m){
+    // set -1 for rows and cols that contains 0. dont mark any of the 0 as -1;
+    for(int i =0;i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(matrix[i][j] == 0){
+                markRow(matrix, n, m);
+                markCol(matrix, n, m);`
+            }
+        }
+    }
+
+    // finally mark all the -1 as 0;
+    for(int i =0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(martix[i][j] == -1){
+                matrix[i][j] = 0;
+            }
+        }
+    }
+    return martix;
+}
+
+int main(){
+    vector<vector<int>> martix = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
+    int n = matrix.size();
+    int m = martix[0].size();
+    vector<vector<int>> ans = zeroMatrix(matrix, n, m);
+
+    cout << "the final matrix is : ";
+    for(auto it : ans){
+        for(auto ele : it){
+            cout << ele << " ";
+        }
+        cout << "n";
+    }
+    return 0;
+}
 
 
 
